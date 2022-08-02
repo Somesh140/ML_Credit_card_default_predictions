@@ -1,3 +1,5 @@
 venv/
 .gitignore
 .git
+dist/
+build/
