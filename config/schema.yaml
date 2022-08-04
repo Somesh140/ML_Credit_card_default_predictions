@@ -1,0 +1,28 @@
+columns:
+  AGE: int64
+  BILL_AMT1: float64
+  BILL_AMT2: float64
+  BILL_AMT3: float64
+  BILL_AMT4: float64
+  BILL_AMT5: float64
+  BILL_AMT6: float64
+  EDUCATION: int64
+  ID: int64
+  LIMIT_BAL: float64
+  MARRIAGE: int64
+  PAY_0: int64
+  PAY_2: int64
+  PAY_3: int64
+  PAY_4: int64
+  PAY_5: int64
+  PAY_6: int64
+  PAY_AMT1: float64
+  PAY_AMT2: float64
+  PAY_AMT3: float64
+  PAY_AMT4: float64
+  PAY_AMT5: float64
+  PAY_AMT6: float64
+  SEX: int64
+  default.payment.next.month: int64
+
+target_column: default.payment.next.month

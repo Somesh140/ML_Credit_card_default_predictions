@@ -4,6 +4,8 @@ numpy
 pandas
 sklearn
 PyYAML
+evidently
 dill
+six
 matplotlib
 -e .

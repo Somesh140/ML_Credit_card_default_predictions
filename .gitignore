@@ -8,6 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+credit/artifact
+Notebook\code_check.ipynb
 build/
 develop-eggs/
 dist/

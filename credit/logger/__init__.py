@@ -21,7 +21,7 @@ log_file_path=os.path.join(LOG_DIR,log_file_name)
 #configuring log file
 logging.basicConfig(filename=log_file_path,
                     filemode="w",
-                    format="[%(asctime)s]##%(levelname)s##%(lineno)s##%(funcName)s()##%(message)s",
+                    format="[%(asctime)s]-[%(levelname)s]-[%(lineno)s]-[%(funcName)s()]-[%(message)s]",
                     level=logging.INFO)
 
 def get_log_df(filepath):
