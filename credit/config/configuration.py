@@ -117,8 +117,52 @@ class configuration:
             raise CreditException(e,sys) from e
 
     def get_data_transformation_config(self)->DataTransformationConfig:
+        """This method returns DataTransformationConfig(tuple) which has values
+            "transformed_train_dir"(str): dir transformed train dataset ,
+            "transformed_test_dir"(str): dir transformed test dataset,
+            "preprocessed_object_file_path"(str): preprocessed object file path
+            """
         try:
-            pass
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            #creating data_transformation_artifact
+            data_transformation_artifact_dir=os.path.join(
+                                        artifact_dir,
+                                        DATA_TRANSFORMATION_ARTIFACT_DIR,
+                                        self.timestamp
+                                            )
+
+            data_transformation_config_info=self.config_info[DATA_TRANSFORMATION_CONFIG_KEY]
+            #creating preprocessed object file path
+            preprocessed_object_file_path = os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_config_info[DATA_TRANSFORMATION_PREPROCESSING_DIR_KEY],
+                data_transformation_config_info[DATA_TRANSFORMATION_PREPROCESSED_FILE_NAME_KEY]
+                                                )
+
+            #creating transformed training test directory
+            transformed_train_dir=os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_config_info[DATA_TRANSFORMATION_DIR_NAME_KEY],
+                data_transformation_config_info[DATA_TRANSFORMATION_TRAIN_DIR_NAME_KEY]
+                                                )
+
+            #creating transformed testing test directory
+            transformed_test_dir = os.path.join(
+                    data_transformation_artifact_dir,
+                    data_transformation_config_info[DATA_TRANSFORMATION_DIR_NAME_KEY],
+                    data_transformation_config_info[DATA_TRANSFORMATION_TEST_DIR_NAME_KEY]
+
+                        )
+            
+            #creating data_tranformation_config
+            data_transformation_config=DataTransformationConfig(
+                preprocessed_object_file_path=preprocessed_object_file_path,
+                transformed_train_dir=transformed_train_dir,
+                transformed_test_dir=transformed_test_dir
+                                    )
+
+            logging.info(f"Data transformation config: {data_transformation_config}")
+            return data_transformation_config
         except Exception as e:
             raise CreditException(e,sys) from e
 

@@ -18,6 +18,7 @@ data_validation_config:
   report_page_file_name: report.html
 
 data_transformation_config:
+  cluster: true
   transformed_dir: transformed_data
   transformed_train_dir: train
   transformed_test_dir: test

@@ -206,8 +206,8 @@ class DataValidation:
             self.is_train_test_file_exists()
             is_validated=self.validate_dataset_schema()
             drift= self.is_data_drift_found()
-
-            if is_validated==True & drift==False:
+            logging.info(f"data_drift : {drift}")
+            if (is_validated==True and drift==False):
                 message="Data Validation performed successfully"
 
             else:
