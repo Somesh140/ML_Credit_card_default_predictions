@@ -167,20 +167,73 @@ class configuration:
             raise CreditException(e,sys) from e
 
     def get_model_trainer_config(self)->ModelTrainerConfig:
+        """This method returns ModelTrainerConfig(tuple) which has values
+        "trained_model_file_path"(str): trained model object file path,
+        "base_accuracy"(float): Accuracy above which model will  be accepted ,
+        "model_config_file_path(str): model configuration yaml file path"""
         try:
-            pass
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            #creating model trainer artifact dir
+            model_trainer_artifact_dir = os.path.join(
+                artifact_dir,
+                MODEL_TRAINER_ARTIFACT_DIR ,
+                self.timestamp)
+            
+            model_trainer_config_info = self.config_info[MODEL_TRAINER_CONFIG_KEY]
+            #creating trained model file path 
+            trained_model_file_path = os.path.join(model_trainer_artifact_dir,
+                                    model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY],
+                                    model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY])
+            #defining base accuracy
+            base_accuracy= model_trainer_config_info[MODEL_TRAINER_BASE_ACCURACY_KEY]
+            #creating model config file path
+            model_config_file_path=os.path.join(model_trainer_config_info[MODEL_TRAINER_MODEL_CONFIG_DIR_KEY],
+                                    model_trainer_config_info[MODEL_TRAINER_MODEL_CONFIG_FILE_NAME_KEY])
+            #creating model trainer config
+            model_trainer_config = ModelTrainerConfig(
+                                trained_model_file_path=trained_model_file_path,
+                                base_accuracy=base_accuracy,
+                                model_config_file_path=model_config_file_path)
+            
+            logging.info(f"Model trainer config:{model_trainer_config}")
+            return model_trainer_config
         except Exception as e:
             raise CreditException(e,sys) from e
 
     def get_model_evaluation_config(self)->ModelEvaluationConfig:
+        """This method returns ModelEvaluationConfig(tuple) which has values
+       "model_evaluation_file_path"(str),
+       "time_stamp" """
         try:
-            pass
+           
+            model_evaluation_config_info= self.config_info[MODEL_EVALUATION_CONFIG_KEY]
+            
+            artifact_dir =self.training_pipeline_config.artifact_dir
+            #creating model evaluation artifact dir
+            model_evaluation_artifact_dir= os.path.join(artifact_dir,
+                            MODEL_EVALUATION_ARTIFACT_DIR)
+            #creating model evaluation file path
+            model_evaluation_file_path = os.path.join(model_evaluation_artifact_dir,
+                                        model_evaluation_config_info[MODEL_EVALUATION_FILE_NAME_KEY])
+            #creating model evaluation config
+            model_evaluation_config = ModelEvaluationConfig(model_evaluation_file_path=model_evaluation_file_path,
+                            time_stamp=self.timestamp)
+
+            logging.info(f"Model evaluation config:{model_evaluation_config}")
+            return model_evaluation_config            
         except Exception as e:
             raise CreditException(e,sys) from e
 
     def get_model_pusher_config(self)->ModelPusherConfig:
         try:
-            pass
+            time_stamp=f"{get_current_timestamp()}"
+            model_pusher_config_info=self.config_info[MODEL_PUSHER_CONFIG_KEY]
+            #creating model pusher dir/saved models file path
+            export_dir_path = os.path.join(CURR_DIR,model_pusher_config_info[MODEL_PUSHER_MODEL_EXPORT_DIR_KEY],
+                                            time_stamp)
+            model_pusher_config = ModelPusherConfig(export_dir_path=export_dir_path)
+            logging.info(f"Model pusher config{model_pusher_config}")
+            return model_pusher_config
         except Exception as e:
             raise CreditException(e,sys) from e
 

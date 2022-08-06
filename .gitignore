@@ -9,7 +9,8 @@ __pycache__/
 # Distribution / packaging
 .Python
 credit/artifact
-Notebook\code_check.ipynb
+saved_models/
+Notebook/code_check.ipynb
 build/
 develop-eggs/
 dist/

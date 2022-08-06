@@ -12,7 +12,8 @@ def main():
         #pipeline.start()
         
         pipeline = Pipeline()
-        pipeline.run_pipeline()
+        pipeline.start()
+        #pipeline.run_pipeline()
         logging.info("main function execution completed")
         #data_transformation_config = Configuartion().get_data_transformation_config()
         #print(data_transformation_config)
