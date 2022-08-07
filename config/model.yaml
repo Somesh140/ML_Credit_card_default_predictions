@@ -24,4 +24,15 @@ model_selection:
       - 4
       n_estimators:
       - 100
+  module_2:
+    class: AdaBoostClassifier
+    module: sklearn.ensemble
+    params:
+      learning_rate: 1.0
+    search_param_grid:
+      learning_rate: 
+      - 1.0
+      - 0.5
+      n_estimators:
+      - 100
      
