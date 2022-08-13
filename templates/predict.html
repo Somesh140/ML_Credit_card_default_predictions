@@ -74,7 +74,7 @@
                         Married
                     </option>
                     <option value="2">
-                        unmarried
+                        Single
                     </option>
                     <option value="3">
                         others
@@ -242,7 +242,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">PAY_5</label>
-                <select class="form-control" name="PAY_0" placeholder="-1=pay duly, 1=payment delay for one month, 2=payment delay for two months, … 8=payment delay for eight months, 9=payment delay for nine months and above"
+                <select class="form-control" name="PAY_5" placeholder="-1=pay duly, 1=payment delay for one month, 2=payment delay for two months, … 8=payment delay for eight months, 9=payment delay for nine months and above"
                     required>
 
                     <option value="-1">
@@ -379,7 +379,7 @@
             
             <div class="mb-3">
 
-                <input class="btn btn-primary" type="submit" value="Predict Median House Value" required />
+                <input class="btn btn-primary" type="submit" value="Predict default" required />
             </div>
 
         </form>
@@ -388,18 +388,18 @@
     <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
         <div class="card">
             <div class="card-header">
-              California housing price
+              Credit Default predictor
             </div>
             <div class="card-body">
-        {% if context['housing_data'] is not none %}
+        {% if context['credit_data'] is not none %}
         <table class="table table-striped">
-            <caption>Califoria Housing Prediction </caption>
+            <caption>Credit card payment default prediction </caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
 
             </tr>
-            {% for column,value in context['housing_data'].items() %}
+            {% for column,value in context['credit_data'].items() %}
 
 
 
@@ -411,9 +411,9 @@
             {% endfor %}
             <tr>
 
-                <td>median_house_value </td>
+                <td>default_payment_next_month</td>
                 <td>
-                    {{ context['median_house_value'] }}
+                    {{ context['default_payment_next_month'] }}
                 </td>
             </tr>
         </table>
@@ -421,7 +421,7 @@
         {% else %}
        
               <h5 class="card-title">Submit Form</h5>
-              <p class="card-text">Kindly provide necessary information to estimate housing price in california</p>
+              <p class="card-text">Kindly provide necessary information to predict credit card default</p>
             
          
 

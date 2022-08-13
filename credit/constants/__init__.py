@@ -81,3 +81,8 @@ MODEL_PUSHER_MODEL_EXPORT_DIR_KEY = "model_export_dir"
 #Pipeline realted variables
 EXPERIMENT_DIR_NAME="experiment"
 EXPERIMENT_FILE_NAME="experiment.csv"
+
+#Flask app related variables
+SAVED_MODELS_DIR_NAME = "saved_models"
+CREDITDATAKEY="credit_data"
+DEFAULT_PAYMENT_NEXT_MONTH_KEY="default_payment_next_month"

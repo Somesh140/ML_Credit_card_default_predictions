@@ -97,7 +97,7 @@ class CreditData:
                 "PAY_AMT5": [self.PAY_AMT5],
                 "PAY_AMT6": [self.PAY_AMT6],
                 
-                "default.payment.next.month": [self.default_payment_next_month]
+                
 
             }
             
