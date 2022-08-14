@@ -21,7 +21,7 @@ log_file_path=os.path.join(LOG_DIR,log_file_name)
 #configuring log file
 logging.basicConfig(filename=log_file_path,
                     filemode="w",
-                    format="[%(asctime)s]-[%(levelname)s]-[%(lineno)s]-[%(funcName)s()]-[%(message)s]",
+                    format="[%(asctime)s]-[%(levelname)s]-[%(lineno)s]-[%(filename)s]-[%(funcName)s()]-[%(message)s]",
                     level=logging.INFO)
 
 def get_log_df(filepath):
@@ -29,12 +29,14 @@ def get_log_df(filepath):
     data=[]
     with open(filepath) as log_file:
         for line in log_file.readlines():
-            data.append(line.split("##"))
+            data.append(line.split("]-["))
     
     log_df=pd.DataFrame(data)
     columns=["Timestamp","Log_level","Line_Number","Filename","FunctionName","Message"]
     log_df.columns=columns
-    return log_df
+    log_df["log_message"] = log_df['Timestamp'].astype(str) +":$"+ log_df["Message"]
+
+    return log_df[["log_message"]]
 
 
 

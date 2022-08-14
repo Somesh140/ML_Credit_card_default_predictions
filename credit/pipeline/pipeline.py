@@ -227,7 +227,7 @@ class Pipeline(Thread):
 
     @classmethod
     def get_experiments_status(cls,limit:int=5)-> pd.DataFrame:
-        """This method gets last five reords of training history from experiment.csv"""
+        """This method gets last five records of training history from experiment.csv"""
         try:
             if os.path.exists(Pipeline.experiment_file_path):
                 df = pd.read_csv(Pipeline.experiment_file_path)
